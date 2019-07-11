@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lw.mapper.AccountSituationMapper">
+
+    <resultMap type="com.lw.entity.FundAccountSituationEntity" id="accountSituationMap">
+        <result property="situationId" column="SITUATION_ID" />
+        <result property="salesAreaCode" column="SALES_AREA_CODE" />
+        <result property="salesAreaName" column="SALES_AREA_NAME" />
+        <result property="salesVillageCode" column="SALES_VILLAGE_CODE" />
+        <result property="salesVillageName" column="SALES_VILLAGE_NAME" />
+        <result property="buyerId" column="BUYER_ID" />
+        <result property="buyerSapCode" column="BUYER_SAP_CODE" />
+        <result property="buyerName" column="BUYER_NAME" />
+        <result property="sellerId" column="SELLER_ID" />
+        <result property="sellerName" column="SELLER_NAME" />
+        <result property="balance" column="BALANCE" />
+        <result property="useAmount" column="USE_AMOUNT" />
+        <result property="availableBalance" column="AVAILABLE_BALANCE" />
+        <result property="buyerCode" column="BUYER_CODE" />
+        <result property="catagoryName" column="CATAGORY_NAME" />
+        <result property="catagoryCode" column="CATAGORY_CODE" />
+        <result property="buName" column="BU_NAME" />
+        <result property="buCode" column="BU_CODE" />
+        <result property="createPerson" column="CREATE_PERSON" />
+        <result property="createDate" column="CREATE_DATE" />
+        <result property="modiPerson" column="MODI_PERSON" />
+        <result property="modiDate" column="MODI_DATE" />
+        <result property="deletePerson" column="DELETE_PERSON" />
+        <result property="deleteDate" column="DELETE_DATE" />
+        <result property="extend1" column="EXTEND1" />
+        <result property="extend2" column="EXTEND2" />
+        <result property="extend3" column="EXTEND3" />
+    </resultMap>
+
+    <select id="getList" resultMap="accountSituationMap"
+            parameterType="com.lw.entity.FundAccountSituationEntity">
+        select
+        SITUATION_ID as "situationId"
+        , SALES_AREA_CODE as "salesAreaCode"
+        , SALES_AREA_NAME as "salesAreaName"
+        , SALES_VILLAGE_CODE as "salesVillageCode"
+        , SALES_VILLAGE_NAME as "salesVillageName"
+        , BUYER_ID as "buyerId"
+        , BUYER_SAP_CODE as "buyerSapCode"
+        , BUYER_NAME as "buyerName"
+        , SELLER_ID as "sellerId"
+        , SELLER_NAME as "sellerName"
+        , BALANCE as "balance"
+        , USE_AMOUNT as "useAmount"
+        , AVAILABLE_BALANCE as "availableBalance"
+        , BUYER_CODE as "buyerCode"
+        , CATAGORY_NAME as "catagoryName"
+        , CATAGORY_CODE as "catagoryCode"
+        , BU_NAME as "buName"
+        , BU_CODE as "buCode"
+        , CREATE_PERSON as "createPerson"
+        , CREATE_DATE as "createDate"
+        , MODI_PERSON as "modiPerson"
+        , MODI_DATE as "modiDate"
+        , DELETE_PERSON as "deletePerson"
+        , DELETE_DATE as "deleteDate"
+        , EXTEND1 as "extend1"
+        , EXTEND2 as "extend2"
+        , EXTEND3 as "extend3"
+        from t_fa_account_situation
+        <where>
+            <if test="situationId!=null and situationId!=''">and SITUATION_ID=#{situationId}</if>
+            <if test="salesAreaCode!=null and salesAreaCode!=''">and SALES_AREA_CODE=#{salesAreaCode}</if>
+            <if test="salesAreaName!=null and salesAreaName!=''">and SALES_AREA_NAME=#{salesAreaName}</if>
+            <if test="salesVillageCode!=null and salesVillageCode!=''">and SALES_VILLAGE_CODE=#{salesVillageCode}</if>
+            <if test="salesVillageName!=null and salesVillageName!=''">and SALES_VILLAGE_NAME=#{salesVillageName}</if>
+            <if test="buyerId!=null and buyerId!=''">and BUYER_ID=#{buyerId}</if>
+            <if test="buyerSapCode!=null and buyerSapCode!=''">and BUYER_SAP_CODE LIKE CONCAT('%',#{buyerSapCode},'%')
+            </if>
+            <if test="buyerName!=null and buyerName!=''">and BUYER_NAME LIKE CONCAT('%',#{buyerName},'%')</if>
+            <if test="sellerId!=null and sellerId!=''">and SELLER_ID=#{sellerId}</if>
+            <if test="sellerName!=null and sellerName!=''">and SELLER_NAME=#{sellerName}</if>
+            <if test="balance!=null and balance!=''">and BALANCE=#{balance}</if>
+            <if test="useAmount!=null and useAmount!=''">and USE_AMOUNT=#{useAmount}</if>
+            <if test="availableBalance!=null and availableBalance!=''">and AVAILABLE_BALANCE=#{availableBalance}</if>
+            <if test="buyerCode!=null and buyerCode!=''">and BUYER_CODE LIKE CONCAT('%',#{buyerCode},'%')</if>
+            <if test="catagoryName!=null and catagoryName!=''">and CATAGORY_NAME=#{catagoryName}</if>
+            <if test="catagoryCode!=null and catagoryCode!=''">and CATAGORY_CODE=#{catagoryCode}</if>
+            <if test="buName!=null and buName!=''">and BU_NAME=#{buName}</if>
+            <if test="buCode!=null and buCode!=''">and BU_CODE=#{buCode}</if>
+            <if test="createPerson!=null and createPerson!=''">and CREATE_PERSON=#{createPerson}</if>
+            <if test="createDate!=null and createDate!=''">and CREATE_DATE=#{createDate}</if>
+            <if test="modiPerson!=null and modiPerson!=''">and MODI_PERSON=#{modiPerson}</if>
+            <if test="modiDate!=null and modiDate!=''">and MODI_DATE=#{modiDate}</if>
+            <if test="deletePerson!=null and deletePerson!=''">and DELETE_PERSON=#{deletePerson}</if>
+            <if test="deleteDate!=null and deleteDate!=''">and DELETE_DATE=#{deleteDate}</if>
+            <if test="extend1!=null and extend1!=''">and EXTEND1=#{extend1}</if>
+            <if test="extend2!=null and extend2!=''">and EXTEND2=#{extend2}</if>
+            <if test="extend3!=null and extend3!=''">and EXTEND3=#{extend3}</if>
+        </where>
+    </select>
+
+</mapper>

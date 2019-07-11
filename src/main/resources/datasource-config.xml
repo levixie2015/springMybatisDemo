@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="          
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd          
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd          
+      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd          
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd          
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${service.jdbc.driver}"/>
+		<property name="url" value="${service.jdbc.url}"/>
+		<property name="username" value="${service.jdbc.username}"/>
+		<property name="password" value="${service.jdbc.password}"/>
+		<!--removeAbandoned: 是否自动回收超时连接-->  
+		<property name="removeAbandoned" value="true"/>  
+		<!--removeAbandonedTimeout: 超时时间(以秒数为单位)-->  
+		<property name="removeAbandonedTimeout" value="300"/>
+		<property name="maxActive" value="255"/>
+		<property name="maxIdle" value="2"/>
+		<property name="maxWait" value="120000"/>
+	</bean>
+	
+
+	<bean name="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans> 
